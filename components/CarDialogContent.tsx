@@ -1,3 +1,4 @@
+'use client'
 import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -20,9 +21,9 @@ function CarDialogContent({ car, handleChange }: DialogFormProps) {
           <TextField label="Color" name="color"
           value={car.color} onChange={handleChange}/>
           <TextField label="Year" name="modelYear"
-          value={car.modelYear} onChange={handleChange}/>
+          value={car.year} onChange={handleChange}/>
           <TextField label="Reg.nr." name="registrationNumber"
-          value={car.registrationNumber} onChange={handleChange}/>
+          value={car.registration} onChange={handleChange}/>
           <TextField label="Price" name="price"
           value={car.price} onChange={handleChange}/>
         </Stack>     

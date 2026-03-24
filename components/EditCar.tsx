@@ -1,4 +1,5 @@
-import { useState } from 'react';
+'use client'
+import React, { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -8,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Tooltip from '@mui/material/Tooltip';
 import { Car, CarResponse, CarEntry } from '@/lib/api/types';
-import { updateCar } from '@/lib/api/carapi';
+import { updateCar } from '@/lib/api/cars';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 type FormProps = {
@@ -23,16 +24,17 @@ function EditCar({ cardata }: FormProps) {
     brand: '',
     model: '',
     color: '',
-    registrationNumber: '',
-    modelYear: 0,
+    registration: '',
+    year: 0,
     price: 0
   });
 
-  const { mutate } = useMutation(updateCar, {
+  const { mutate } = useMutation({
+    mutationFn: updateCar,
     onSuccess: () => {
-      queryClient.invalidateQueries(["cars"]);
+      void queryClient.invalidateQueries({ queryKey: ["cars"] });
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       console.error(err);
     }
   });
@@ -43,8 +45,8 @@ function EditCar({ cardata }: FormProps) {
       brand: cardata.brand,
       model: cardata.model,
       color: cardata.color,
-      registrationNumber: cardata.registrationNumber,
-      modelYear: cardata.modelYear,
+      registration: cardata.registration,
+      year: cardata.year,
       price: cardata.price
     });
   };
@@ -56,7 +58,7 @@ function EditCar({ cardata }: FormProps) {
     const url = cardata._links.self.href;
     const carEntry: CarEntry = {car, url}
     mutate(carEntry);
-    setCar({ brand: '', model: '', color: '', registrationNumber: '', modelYear: 0, price: 0 });    
+    setCar({ brand: '', model: '', color: '', registration: '', year: 0, price: 0 });
     setOpen(false);
   }
 

@@ -1,22 +1,18 @@
 /*import Image from "next/image";
 import styles from "./page.module.css";*/
+'use client'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Carlist from "@/components/Carlist";
+import CarList from "@/components/CarList";
 
 const queryClient = new QueryClient();
 
 export default function Home() {
   return (
-    /*<div className={styles.page}>
-      <main className={styles.main}>
-
-      </main>
-    </div>*/
       <Container maxWidth="xl">
         <CssBaseline />
         <AppBar position="static">
@@ -27,7 +23,7 @@ export default function Home() {
           </Toolbar>
         </AppBar>
         <QueryClientProvider client={queryClient}>
-          <Carlist />
+          <CarList />
         </QueryClientProvider>
       </Container>
   );

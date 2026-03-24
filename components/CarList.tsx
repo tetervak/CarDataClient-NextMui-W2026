@@ -1,14 +1,19 @@
+'use client'
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getCars, deleteCar } from '@/lib/api/carapi';
-import { DataGrid, GridColDef, GridCellParams, GridToolbar } from '@mui/x-data-grid';
+import { getCars, deleteCar } from '@/lib/api/cars';
+import { 
+  DataGrid, 
+  GridColDef, 
+  GridCellParams
+} from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCar from './AddCar';
 import EditCar from './EditCar';
 
-function Carlist() {
+function CarList() {
   const [open, setOpen] = useState(false);
 
   const queryClient = useQueryClient();
@@ -18,26 +23,27 @@ function Carlist() {
     queryFn: getCars
   });
 
-  const { mutate } = useMutation(deleteCar, {
+  const { mutate } = useMutation({
+    mutationFn: deleteCar,
     onSuccess: () => {
       setOpen(true);
-      queryClient.invalidateQueries({ queryKey: ['cars'] });
+      void queryClient.invalidateQueries({ queryKey: ['cars'] });
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       console.error(err);
     },
   }); 
 
   const columns: GridColDef[] = [
-    {field: 'brand', headerName: 'Brand', width: 200},
-    {field: 'model', headerName: 'Model', width: 200},
-    {field: 'color', headerName: 'Color', width: 200},
-    {field: 'registrationNumber', headerName: 'Reg.nr.', width: 150},
-    {field: 'modelYear', headerName: 'Model Year', width: 150},
-    {field: 'price', headerName: 'Price', width: 150},
+    {field: 'brand', headerName: 'Brand', width: 100},
+    {field: 'model', headerName: 'Model', width: 100},
+    {field: 'color', headerName: 'Color', width: 100},
+    {field: 'registration', headerName: 'Registration', width: 150},
+    {field: 'year', headerName: 'Year', width: 100},
+    {field: 'price', headerName: 'Price', width: 100},
     {
       field: 'edit',
-      headerName: '',
+      headerName: 'Edit',
       width: 90,
       sortable: false,
       filterable: false,
@@ -47,7 +53,7 @@ function Carlist() {
     },
     {
       field: 'delete',
-      headerName: '',
+      headerName: 'Delete',
       width: 90,
       sortable: false,
       filterable: false,
@@ -81,7 +87,6 @@ function Carlist() {
           columns={columns}
           disableRowSelectionOnClick={true}
           getRowId={row => row._links.self.href}
-          slots={{ toolbar: GridToolbar }}
         />
         <Snackbar
           open={open}
@@ -93,4 +98,4 @@ function Carlist() {
   }
 }
 
-export default Carlist;
+export default CarList;

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+'use client'
+import { useState, ChangeEvent } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addCar } from '@/lib/api/carapi';
+import { addCar } from '@/lib/api/cars';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -16,16 +17,17 @@ function AddCar() {
     brand: '',
     model: '',
     color: '',
-    registrationNumber: '',
-    modelYear: 0,
+    registration: '',
+    year: 0,
     price: 0
   });
 
-  const { mutate } = useMutation(addCar, {
+  const { mutate } = useMutation({
+    mutationFn: addCar,
     onSuccess: () => {
-      queryClient.invalidateQueries(["cars"]);
+      return queryClient.invalidateQueries({ queryKey: ["cars"] });
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       console.error(err);
     },
   });  
@@ -38,13 +40,13 @@ function AddCar() {
     setOpen(false);
   };    
   
-  const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
     setCar({...car, [event.target.name]: event.target.value});
   }
 
   const handleSave = () => {
     mutate(car);
-    setCar({ brand: '', model: '', color: '', registrationNumber: '', modelYear: 0, price: 0 });
+    setCar({ brand: '', model: '', color: '', registration: '', year: 0, price: 0 });
     handleClose();
   }  
 
