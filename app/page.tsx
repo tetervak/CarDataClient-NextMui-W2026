@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 export default function Home() {
   return (
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <CssBaseline />
         <AppBar position="static">
           <Toolbar>
