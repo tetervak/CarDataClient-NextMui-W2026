@@ -35,7 +35,7 @@ function CarList() {
   }); 
 
   const columns: GridColDef[] = [
-    {field: 'brand', headerName: 'Brand', width: 100},
+    {field: 'brand', headerName: 'Brand', flex: 1, minWidth: 100},
     {field: 'model', headerName: 'Model', width: 100},
     {field: 'color', headerName: 'Color', width: 100},
     {field: 'registration', headerName: 'Registration', width: 150},
