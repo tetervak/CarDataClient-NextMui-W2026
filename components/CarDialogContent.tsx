@@ -20,9 +20,9 @@ function CarDialogContent({ car, handleChange }: DialogFormProps) {
           value={car.model} onChange={handleChange}/>
           <TextField label="Color" name="color"
           value={car.color} onChange={handleChange}/>
-          <TextField label="Year" name="modelYear"
+          <TextField label="Year" name="year"
           value={car.year} onChange={handleChange}/>
-          <TextField label="Reg.nr." name="registrationNumber"
+          <TextField label="Reg.nr." name="registration"
           value={car.registration} onChange={handleChange}/>
           <TextField label="Price" name="price"
           value={car.price} onChange={handleChange}/>

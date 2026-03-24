@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 export default function Home() {
   return (
-      <Container maxWidth="md">
+      <Container maxWidth="md" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <CssBaseline />
         <AppBar position="static">
           <Toolbar>

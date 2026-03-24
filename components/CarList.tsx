@@ -81,13 +81,13 @@ function CarList() {
   else if (isSuccess) {
     return (
       <>
-        <AddCar />
         <DataGrid
           rows={data}
           columns={columns}
           disableRowSelectionOnClick={true}
           getRowId={row => row._links.self.href}
         />
+        <AddCar />
         <Snackbar
           open={open}
           autoHideDuration={2000}

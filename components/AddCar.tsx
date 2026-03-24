@@ -52,9 +52,11 @@ function AddCar() {
 
   return(
     <>
-      <Button onClick={handleClickOpen}>New Car</Button>
+      <Button onClick={handleClickOpen} variant="contained" style={{alignSelf: 'flex-start'}}>
+        New Car
+      </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>New car</DialogTitle>
+        <DialogTitle>Add Car</DialogTitle>
           <CarDialogContent car={car} handleChange={handleChange} />
         <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
