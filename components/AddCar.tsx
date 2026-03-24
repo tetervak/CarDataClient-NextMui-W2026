@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import CarDialogContent from './CarDialogContent';
 import Button from '@mui/material/Button';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Car } from '@/lib/api/types';
 
 function AddCar() {
@@ -53,6 +54,7 @@ function AddCar() {
   return(
     <>
       <Button onClick={handleClickOpen} variant="contained" style={{alignSelf: 'flex-start'}}>
+        <AddCircleOutlineIcon style={{marginRight: 10}}/>
         New Car
       </Button>
       <Dialog open={open} onClose={handleClose}>

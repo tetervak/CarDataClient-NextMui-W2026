@@ -1,5 +1,3 @@
-/*import Image from "next/image";
-import styles from "./page.module.css";*/
 'use client'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,7 +16,7 @@ export default function Home() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6">
-              Car Shop
+              Car Data
             </Typography>
           </Toolbar>
         </AppBar>
